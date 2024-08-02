@@ -1,0 +1,36 @@
+.section{
+   
+    padding: 0 15px;
+    background-position: right 10% center;
+}
+
+a{
+    text-decoration: none;
+}
+
+.patchNews{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0
+}
+
+.title{
+    color: #fff;
+    font-size: 22px;
+}
+
+.sub{
+    color: #fff;
+}
+
+@media screen and (min-width:1200px) {
+    .image{
+        max-width: 300px;
+        margin-right: 40px;
+    }
+
+    .title{
+        font-size: 42px;
+    }   
+}

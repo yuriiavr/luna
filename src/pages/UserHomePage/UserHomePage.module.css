@@ -1,0 +1,161 @@
+.cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.playerCont {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectCont {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.selectCont span {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.footer {
+  padding: 30px 0px;
+  background-color: #0e141c;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 2.5rem;
+}
+
+.social_cont {
+  display: flex;
+  flex-direction: column;
+  column-gap: 15px;
+  margin: 0 60px;
+}
+
+.social_link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 22px;
+}
+
+.footerLogo {
+  color: #fff;
+  font-size: 48px;
+  font-family: "Fredoka";
+  text-decoration: none;
+}
+
+.searchButton {
+  background-color: transparent;
+  border: 1px solid #ff5277;
+  color: #ff5277;
+  text-transform: uppercase;
+  padding: 10px 50px;
+  cursor: pointer;
+  margin: 20px auto;
+}
+
+.searchButton:hover,
+.searchButton:focus {
+  background-color: #ff5277;
+  border: 1px solid transparent;
+  color: #fff;
+}
+
+.select {
+  padding: 7px 10px;
+  font-size: 20px;
+  background-color: transparent;
+}
+
+.select option {
+  color: #111;
+}
+
+.success_message {
+  background-color: #1ec960;
+  max-width: 300px;
+  color: #fff;
+  padding: 20px 30px;
+  padding-right: 35px;
+  text-align: center;
+  border-radius: 15px;
+  position: absolute;
+  right: 30px;
+  display: none;
+  filter: drop-shadow(2px 11px 10px #000000);
+}
+
+.error_message {
+  background-color: #ff5277;
+  width: 100%;
+  color: #fff;
+  padding: 40px 0px;
+  padding-right: 0px;
+  text-align: center;
+  border-radius: 0px;
+  position: absolute;
+  right: 0px;
+  top: 0;
+  filter: drop-shadow(2px 11px 10px #000000);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.close_button {
+  display: none;
+}
+
+@media screen and (min-width: 1200px) {
+  .footer {
+    padding: 30px 0px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 0;
+  }
+
+  .error_message {
+    background-color: #ff5277;
+    max-width: 300px;
+    color: #fff;
+    padding: 20px 30px;
+    padding-right: 35px;
+    text-align: center;
+    border-radius: 15px;
+    position: absolute;
+    right: 30px;
+    top: 6rem;
+    filter: drop-shadow(2px 11px 10px #000000);
+  }
+
+  .close_button {
+    background-color: transparent;
+    border: none;
+    border-left: 2px solid #fff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 50px;
+    padding: 2px 5px;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    font-size: 16px;
+    height: 100%;
+    display: block;
+  }
+
+  .selectCont span {
+    font-size: 22px;
+  }
+}

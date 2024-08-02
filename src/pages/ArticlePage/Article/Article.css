@@ -1,0 +1,49 @@
+.link {
+    color: #ff5277;
+    text-decoration: underline;
+    padding: 2px 5px;
+}
+
+.link:hover, .link:focus{
+    color: #fff;
+    background-color: #ff5277;
+}
+
+.skill-prew{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.article-title{
+    font-size: 42px;
+}
+
+.single-video{
+    width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.single-image{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (min-width:769px) {
+    .single-video {
+        width: 700px;
+        height: 400px;
+    }
+}
+
+@media screen and (min-width:1300px) {
+    .single-video{
+        width: 1250px;
+        height: 703px;
+    }
+}

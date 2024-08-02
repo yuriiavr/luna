@@ -1,0 +1,154 @@
+.link{
+    text-decoration: none;
+}
+
+.title {
+    font-size: 18px;
+    font-family: 'Fredoka';
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.sub {
+    font-size: 12px;
+    text-align: center;
+}
+
+.type{
+    font-weight: 900;
+    font-size: 12px;
+    text-align: center;
+}
+
+.content__cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    margin-bottom: 30px;
+}
+
+.view {
+    color: skyblue;
+    letter-spacing: 0.1em;
+}
+
+.favorite__btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.favorite__icon {
+    width: 30px;
+}
+
+.content__image{
+    max-width: 300px;
+    scale: 1.2;
+    transition: all 1s;
+}
+
+.imageCont {
+    width: 300px;
+    position: relative;
+    z-index: -1;
+    left: -5px;
+    overflow: hidden;
+}
+
+.border{
+    margin-right: 0px;
+    margin-bottom: 15px;
+    padding: 10px 0 10px 0;
+        color: #ffffff;
+        background-color: transparent;
+        background-image:
+            linear-gradient(180deg, #bdbdbd, #bdbdbd),
+            linear-gradient(225deg, #bdbdbd, #bdbdbd),
+            linear-gradient(0deg, #bdbdbd, #bdbdbd),
+            linear-gradient(90deg, #bdbdbd, #bdbdbd),
+            linear-gradient(45deg, transparent 9px, #bdbdbd 10px, #bdbdbd 6px, transparent 6px),
+            linear-gradient(45deg, transparent 9px, #bdbdbd 10px, #bdbdbd 6px, transparent 6px);
+        background-position: top left, top left, bottom right, bottom right, top right, top right;
+        background-size: calc(100% - 15px) 1px, 1px 100%, 100% 1px, 1px calc(100% - 15px), 15px 15px, 15px 15px;
+        background-repeat: no-repeat;
+        transition: all 0.5s;
+}
+
+.link:hover .border{
+    background-image:
+        linear-gradient(180deg, #bdbdbd, #bdbdbd),
+        linear-gradient(225deg, #bdbdbd, #bdbdbd),
+        linear-gradient(0deg, #bdbdbd, #bdbdbd),
+        linear-gradient(90deg, #bdbdbd, #bdbdbd),
+        linear-gradient(90deg, transparent 15px, #bdbdbd 10px, #bdbdbd 12px, transparent 12px),
+        linear-gradient(0deg, transparent 15px, #bdbdbd 10px, #bdbdbd 12px, transparent 12px);
+    background-size: calc(100% - 0px) 1px, 1px 100%, 100% 1px, 1px calc(100% - 0px), 13px 25px, 25px 13px;
+    background-position: top left, top left, bottom right, bottom right, top right, top right;
+}
+
+.link:hover .content__image{
+    scale: 1
+}
+
+.content__box{
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media screen and (min-width: 1200px) {
+    .imageCont {
+        width: 400px;
+        left: -15px;
+    }
+
+    .content__cont {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100%;
+        margin-bottom: 0px;
+    }
+
+    
+    .content__image{  
+        max-width: 400px;
+    }
+
+    .border{
+        margin-right: 50px;
+        width: 370px;
+        margin-bottom: 50px;
+    }
+
+    .content__box{
+        margin-left: 50px;
+    }
+
+    .title {
+        font-size: 28px;
+        color: #000;
+        font-family: 'Fredoka';
+        letter-spacing: 2px;
+        text-align: start;
+    }
+
+    .sub {
+        font-size: 18px;
+        color: #000;
+        text-align: start;
+    }
+
+    .type{
+        color: skyblue;
+        font-weight: 900;
+        font-size: 18px;
+        text-align: start;
+    }
+}

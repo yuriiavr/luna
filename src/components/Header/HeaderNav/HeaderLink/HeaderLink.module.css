@@ -1,0 +1,16 @@
+.number {
+    font-weight: 700;
+}
+
+.link {
+    color: #fff;
+    text-decoration: none;
+    padding-bottom: 7px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    font-family: 'Fredoka';
+}
+
+.link:global(.active) {
+    border-bottom: 3px solid #fff;
+}

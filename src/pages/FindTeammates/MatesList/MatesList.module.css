@@ -1,0 +1,124 @@
+.articles__list {
+  background-color: transparent;
+  margin: 0;
+  border-radius: 50px;
+  list-style: none;
+  padding-left: 0;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  row-gap: 10px;
+  column-gap: 10px;
+  width: 300px;
+  padding: 0 15px;
+}
+
+.loader {
+  color: #000;
+  font-size: 42px;
+}
+
+.section {
+  background-image: url("../../../images/background.png");
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fillterList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fillterList button {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.select {
+  width: 300px;
+  padding: 5px;
+  background: transparent;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.selectBox {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.link {
+  color: #ff5277;
+  text-decoration: underline;
+  padding: 2px 5px;
+}
+
+.link:hover,
+.link:focus {
+  color: #fff;
+  background-color: #ff5277;
+}
+
+.reloadButton {
+  background-color: #ff5277;
+  cursor: pointer;
+  border: none;
+  padding: 10px 0px;
+  position: absolute;
+  top: -80px;
+  right: 0px;
+  z-index: 3;
+  -webkit-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  width: 100%;
+}
+
+.reloadButton:hover,
+.reloadButton:focus {
+  -webkit-box-shadow: inset 2px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset 2px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: inset 2px 4px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+@media screen and (min-width: 1200px) {
+  .articles__list {
+    width: 1000px;
+  }
+
+  .section {
+    max-width: 1000px;
+  }
+
+  .selectBox {
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+}
+
+@media screen and (min-width: 1650px) {
+  .articles__list {
+    width: 1200px;
+  }
+
+  .section {
+    max-width: 1200px;
+  }
+
+  .reloadButton{
+    padding: 5px 10px;
+    width: auto;
+    top: -70px;
+  }
+}

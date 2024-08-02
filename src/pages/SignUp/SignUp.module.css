@@ -1,0 +1,108 @@
+.form {
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.label span {
+    margin-bottom: 10px;
+}
+
+.reg_btn {
+    background-color: transparent;
+    border: 1px solid #ff5277;
+    color: #ff5277;
+    text-transform: uppercase;
+    padding: 10px 50px;
+    cursor: pointer;
+    margin: 20px auto;
+}
+
+.reg_btn:hover,
+.reg_btn:focus {
+    background-color: #ff5277;
+    border: 1px solid transparent;
+    color: #fff;
+}
+
+.input {
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+.link {
+    color: #ff5277;
+    text-decoration: underline;
+    padding: 2px 5px;
+}
+
+.link:hover,
+.link:focus {
+    color: #fff;
+    background-color: #ff5277;
+}
+
+.singin_heading {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.footer {
+    padding: 30px 0px;
+    background-color: #0E141C;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+}
+
+.social_cont {
+    display: flex;
+    flex-direction: column;
+    column-gap: 15px;
+    margin: 0 60px;
+}
+
+.social_link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 22px;
+}
+
+.footerLogo {
+    color: #fff;
+    font-size: 48px;
+    font-family: 'Fredoka';
+    text-decoration: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000000s ease-in-out 0s;
+}
+
+@media screen and (min-width: 400px) {
+    
+}
+
+@media screen and (min-width: 1200px) {
+    .footer {
+        padding: 30px 0px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

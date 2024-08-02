@@ -1,0 +1,115 @@
+.articles__list {
+  background-color: transparent;
+  margin: 0;
+  border-radius: 50px;
+  list-style: none;
+  padding-left: 0;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  row-gap: 10px;
+  column-gap: 10px;
+  width: 300px;
+  padding: 0 15px;
+}
+
+.list_item {
+  width: 300px;
+}
+
+.loader {
+  color: #000;
+  font-size: 42px;
+}
+
+.section {
+  background-image: url("../../../images/background.png");
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fillterList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fillterList button {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.select {
+  width: 300px;
+  padding: 5px;
+  background: transparent;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.selectBox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+
+.selectBox input {
+  max-width: 230px;
+}
+
+.selectBox img {
+  max-width: 16px;
+  max-height: 26px;
+  padding: 10px 10px;
+  border-left: none;
+}
+
+.findLore {
+  background: transparent;
+  font-size: 22px;
+  padding: 5px 10px;
+}
+
+.sry {
+  padding-bottom: 60px;
+}
+
+@media screen and (min-width: 1200px) {
+  .list_item {
+    width: 1000px;
+  }
+
+  .articles__list {
+    width: 1000px;
+    padding: 0 90px;
+  }
+  .selectBox {
+    margin-bottom: 50px;
+  }
+
+  .selectBox input {
+    max-width: 100%
+  }
+
+  .selectBox img {
+    max-width: 26px;
+    max-height: 26px;
+    padding: 5px 10px;
+    border-left: none;
+  }
+}
+
+@media screen and (min-width: 1650px) {
+  .articles__list {
+    width: 1200px;
+    padding: 0 90px;
+  }
+}
