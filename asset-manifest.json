@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/LUNA/static/css/main.7c586c21.css",
-    "main.js": "/LUNA/static/js/main.d7ad24d5.js",
-    "static/js/787.69581eeb.chunk.js": "/LUNA/static/js/787.69581eeb.chunk.js",
-    "static/media/AdonisC.ttf": "/LUNA/static/media/AdonisC.95a9861a69b4b93fa175.ttf",
-    "static/media/donatello.png": "/LUNA/static/media/donatello.c792a7f5d5e4730f0dcc.png",
-    "static/media/youtube.png": "/LUNA/static/media/youtube.07075e63449074f45e58.png",
-    "static/media/Academy.ttf": "/LUNA/static/media/Academy.9f2a3a45be60f29682aa.ttf",
-    "static/media/min1.png": "/LUNA/static/media/min1.1a381bf7dc1bb4ad9edd.png",
-    "static/media/Fredoka-Regular.ttf": "/LUNA/static/media/Fredoka-Regular.4aea26dd6637dfac0fac.ttf",
-    "static/media/telegram.png": "/LUNA/static/media/telegram.89b53152e1092a18f305.png",
-    "static/media/discord.png": "/LUNA/static/media/discord.c3775d8200f58093e477.png",
-    "static/media/tg.png": "/LUNA/static/media/tg.0999a5124b2591d75c1a.png",
-    "static/media/buff.ico": "/LUNA/static/media/buff.78ce1596599b814eb962.ico",
-    "static/media/debuff.ico": "/LUNA/static/media/debuff.b27248f761e7ab51b405.ico",
-    "index.html": "/LUNA/index.html",
-    "main.7c586c21.css.map": "/LUNA/static/css/main.7c586c21.css.map",
-    "main.d7ad24d5.js.map": "/LUNA/static/js/main.d7ad24d5.js.map",
-    "787.69581eeb.chunk.js.map": "/LUNA/static/js/787.69581eeb.chunk.js.map"
+    "main.css": "/luna/static/css/main.4574eb98.css",
+    "main.js": "/luna/static/js/main.a268fd1f.js",
+    "static/js/787.69581eeb.chunk.js": "/luna/static/js/787.69581eeb.chunk.js",
+    "static/media/AdonisC.ttf": "/luna/static/media/AdonisC.95a9861a69b4b93fa175.ttf",
+    "static/media/donatello.png": "/luna/static/media/donatello.c792a7f5d5e4730f0dcc.png",
+    "static/media/youtube.png": "/luna/static/media/youtube.07075e63449074f45e58.png",
+    "static/media/Academy.ttf": "/luna/static/media/Academy.9f2a3a45be60f29682aa.ttf",
+    "static/media/min1.png": "/luna/static/media/min1.1a381bf7dc1bb4ad9edd.png",
+    "static/media/Fredoka-Regular.ttf": "/luna/static/media/Fredoka-Regular.4aea26dd6637dfac0fac.ttf",
+    "static/media/telegram.png": "/luna/static/media/telegram.89b53152e1092a18f305.png",
+    "static/media/discord.png": "/luna/static/media/discord.c3775d8200f58093e477.png",
+    "static/media/tg.png": "/luna/static/media/tg.0999a5124b2591d75c1a.png",
+    "static/media/buff.ico": "/luna/static/media/buff.78ce1596599b814eb962.ico",
+    "static/media/debuff.ico": "/luna/static/media/debuff.b27248f761e7ab51b405.ico",
+    "index.html": "/luna/index.html",
+    "main.4574eb98.css.map": "/luna/static/css/main.4574eb98.css.map",
+    "main.a268fd1f.js.map": "/luna/static/js/main.a268fd1f.js.map",
+    "787.69581eeb.chunk.js.map": "/luna/static/js/787.69581eeb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7c586c21.css",
-    "static/js/main.d7ad24d5.js"
+    "static/css/main.4574eb98.css",
+    "static/js/main.a268fd1f.js"
   ]
 }
