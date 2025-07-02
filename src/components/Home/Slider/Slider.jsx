@@ -5,29 +5,36 @@ import 'react-slideshow-image/dist/styles.css'
 import { ThemeContext } from '../../../App'
 import { useContext } from "react";
 
+import champ1 from "../../../images/champ1.avif";
+import champ2 from "../../../images/champ2.avif";
+import champ3 from "../../../images/champ3.avif";
+import champ4 from "../../../images/champ4.avif";
+import champ5 from "../../../images/champ5.avif";
+import champ6 from "../../../images/champ6.avif";
+
 const slideImages = [
   {
-    url: "https://www.leagueoflegends.com/static/mage-3982e64e8ed1cd4dceec59ad308a161d.png",
+    url: champ1,
     caption: 'Slide 1'
   },
   {
-    url: "https://www.leagueoflegends.com/static/assassin-a648ef647c30c9411666320760cf348b.png",
+    url: champ2,
     caption: 'Slide 2'
   },
   {
-    url: "https://www.leagueoflegends.com/static/support-67a9e712458a12bbb8282bda5333a0ba.png",
+    url: champ3,
     caption: 'Slide 3'
   },
   {
-    url: "https://www.leagueoflegends.com/static/tank-585e210d26783e11b97d62eafa248ff4.png",
+    url: champ4,
     caption: 'Slide 4'
   },
   {
-    url: "https://www.leagueoflegends.com/static/marksman-479be0ed78d734df0bbf0dee3d6a512b.png",
+    url: champ5,
     caption: 'Slide 5'
   },
   {
-    url: "https://www.leagueoflegends.com/static/fighter-a4437cd565f0ef83367b671e5d07fe5c.png",
+    url: champ6,
     caption: 'Slide 6'
   },
 ];
@@ -56,7 +63,7 @@ const Slider = () => {
                 {slideImages.map((slideImage, index)=> (
                     <div key={index}>
                         <div>
-                            <img className={css.slideImage} src={slideImage.url} alt="" />
+                            <img className={css.slideImage} src={slideImage.url} alt={slideImage.caption} />
                         </div>
                     </div>
                 ))}
