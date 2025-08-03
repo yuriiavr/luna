@@ -1,4 +1,4 @@
-export const BaseUrl = "https://lolnewsua.onrender.com";
+export const BaseUrl = "http://localhost:3001";
 
 export const PostUrlAdditional = `${BaseUrl}/api/additional/`
 

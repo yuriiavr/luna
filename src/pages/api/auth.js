@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://lolnewsua.onrender.com";
+const BASE_URL = "http://localhost:3001";
 
 export const login = (credentials, token) => {
   return axios.post(`${BASE_URL}/api/auth/login`, credentials, {

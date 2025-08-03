@@ -1,15 +1,15 @@
+// HeaderNav.js
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import css from "./HeaderNav.module.css";
 import { ThemeContext } from "../../../App";
 import { useAuth } from "../../../hooks/useAuth";
-import profileIcon from "../../../images/profile-icon.png"
+import profileIcon from "../../../images/profile-icon.png";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../../redux/auth/operations";
 
 export const HeaderNav = () => {
-
-  const baseUrl = 'https://www.leagueoflegends.com.ua'
+  const baseUrl = "https://www.leagueoflegends.com.ua";
 
   const [open, setOpen] = useState(false);
 
@@ -23,7 +23,7 @@ export const HeaderNav = () => {
     dispatch(logoutUser())
       .then((res) => console.log(res))
       .catch((error) => error);
-  }
+  };
 
   const handleOpen = () => {
     setOpen(!open);
@@ -45,29 +45,23 @@ export const HeaderNav = () => {
     toggleThemeImg = require("../../../images/moon.png");
   }
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth(); 
+
+  const isAdminOrModerator = user?.role === "admin" || user?.role === "moderator";
 
   return (
     <div className={css.navList}>
       <Link
         to={"/"}
         onClick={handleChangePage}
-        className={
-          window.location.href === `${baseUrl}/#`
-            ? css.activeLink
-            : css.link
-        }
+        className={window.location.href === `${baseUrl}/#` ? css.activeLink : css.link}
       >
         Головна
       </Link>
       <Link
         to={"/news"}
         onClick={handleChangePage}
-        className={
-          window.location.href === `${baseUrl}/#/news`
-            ? css.activeLink
-            : css.link
-        }
+        className={window.location.href === `${baseUrl}/#/news` ? css.activeLink : css.link}
       >
         Новини
       </Link>
@@ -86,9 +80,7 @@ export const HeaderNav = () => {
         />
       </button>
       {open ? (
-        <ul
-          className={css.menu}
-        >
+        <ul className={css.menu}>
           <li className={css.menuItem}>
             <Link
               onClick={handleChangePage}
@@ -136,14 +128,21 @@ export const HeaderNav = () => {
       <Link
         onClick={handleChangePage}
         to={"/faq"}
-        className={
-          window.location.href === `${baseUrl}/#/faq`
-            ? css.activeLink
-            : css.link
-        }
+        className={window.location.href === `${baseUrl}/#/faq` ? css.activeLink : css.link}
       >
         Про нас
       </Link>
+      {isAdminOrModerator && (
+        <Link
+          onClick={handleChangePage}
+          to={"/admin"}
+          className={
+            window.location.href === `${baseUrl}/#/admin` ? css.activeLink : css.link
+          }
+        >
+          Панель адміна
+        </Link>
+      )}
       {isLoggedIn ? (
         <button
           className={css.login}
@@ -181,19 +180,11 @@ export const HeaderNav = () => {
             : { display: "flex" }
         }
       >
-        <img
-          className={css.profile_icon}
-          src={profileIcon}
-          alt="profile icon"
-        />
+        <img className={css.profile_icon} src={profileIcon} alt="profile icon" />
       </Link>
       <div>
         <button onClick={handleChangeTheme} className={css.theme_toggle}>
-          <img
-            className={css.toggleImg}
-            src={toggleThemeImg}
-            alt="theme button"
-          />
+          <img className={css.toggleImg} src={toggleThemeImg} alt="theme button" />
         </button>
       </div>
     </div>

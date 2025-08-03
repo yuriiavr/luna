@@ -1,3 +1,4 @@
+// App.js
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
@@ -24,28 +25,30 @@ import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentUser } from "./redux/auth/operations";
 import { useAuth } from "./hooks/useAuth";
+import { AdminPanel } from "./pages/AdminPanel/AdminPanel";
 export const ThemeContext = React.createContext(true);
 
 function App() {
-  const TRACKING_ID = "G-P2ZS1WJNLC"; // OUR_TRACKING_ID
+  const TRACKING_ID = "G-P2ZS1WJNLC";
   ReactGA.initialize(TRACKING_ID);
 
   useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
 
-  const { isRefreshing } = useAuth()
+  const { isRefreshing } = useAuth();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
-  
 
   const [theme, setTheme] = useState(false);
 
-  return isRefreshing ? (<b>Refreshing user....</b>) : (
+  return isRefreshing ? (
+    <b>Refreshing user....</b>
+  ) : (
     <ThemeContext.Provider value={{ theme: theme, setTheme: setTheme }}>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -91,6 +94,14 @@ function App() {
           element={
             <ProtectedRoute>
               <FindTeammates />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminPanel />
             </ProtectedRoute>
           }
         />

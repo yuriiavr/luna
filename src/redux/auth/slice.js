@@ -7,11 +7,11 @@ import {
 } from "./operations";
 
 const initialState = {
-  user: { userName: null, email: null },
+  user: { userName: null, email: null, role: null },
   token: null,
   isLoggedIn: false,
   isRefreshig: false,
-  error: null,
+  error: null
 };
 
 const authSlice = createSlice({
@@ -19,19 +19,18 @@ const authSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(loginUser.fulfilled, (state, { payload }) => {
-      const { token } = payload;
-
-      state.user = payload;
-      state.token = token;
+      const { token, userName, email, role } = payload;
+      
+      state.user = { userName, email, role };
       state.isLoggedIn = true;
       state.error = null;
       state.isRefreshig = false;
     });
 
     builder.addCase(registerUser.fulfilled, (state, { payload }) => {
-      const { token } = payload;
-
-      state.user = payload;
+      const { token, userName, email, role } = payload;
+      
+      state.user = { userName, email, role };
       state.token = token;
       state.isLoggedIn = true;
       state.error = null;
@@ -61,13 +60,14 @@ const authSlice = createSlice({
     });
 
     builder.addCase(logoutUser.fulfilled, (state) => {
-      state.user = { name: null, email: null };
+      state.user = { name: null, email: null, role: null };
       state.token = null;
       state.isLoggedIn = false;
       window.location.reload();
     });
 
-    builder.addCase(fetchCurrentUser.fulfilled, (state) => {
+    builder.addCase(fetchCurrentUser.fulfilled, (state, { payload }) => {
+      state.user = payload.user;
       state.isLoggedIn = true;
       state.isRefreshig = false;
     });
