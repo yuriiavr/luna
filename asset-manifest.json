@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/luna/static/css/main.7182034d.css",
-    "main.js": "/luna/static/js/main.6a75b08a.js",
+    "main.css": "/luna/static/css/main.2fa8a2d6.css",
+    "main.js": "/luna/static/js/main.67f69c35.js",
     "static/js/787.69581eeb.chunk.js": "/luna/static/js/787.69581eeb.chunk.js",
     "static/media/AdonisC.ttf": "/luna/static/media/AdonisC.95a9861a69b4b93fa175.ttf",
     "static/media/champ3.avif": "/luna/static/media/champ3.3da07acfc374d3995714.avif",
@@ -21,12 +21,12 @@
     "static/media/buff.ico": "/luna/static/media/buff.78ce1596599b814eb962.ico",
     "static/media/debuff.ico": "/luna/static/media/debuff.b27248f761e7ab51b405.ico",
     "index.html": "/luna/index.html",
-    "main.7182034d.css.map": "/luna/static/css/main.7182034d.css.map",
-    "main.6a75b08a.js.map": "/luna/static/js/main.6a75b08a.js.map",
+    "main.2fa8a2d6.css.map": "/luna/static/css/main.2fa8a2d6.css.map",
+    "main.67f69c35.js.map": "/luna/static/js/main.67f69c35.js.map",
     "787.69581eeb.chunk.js.map": "/luna/static/js/787.69581eeb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7182034d.css",
-    "static/js/main.6a75b08a.js"
+    "static/css/main.2fa8a2d6.css",
+    "static/js/main.67f69c35.js"
   ]
 }
