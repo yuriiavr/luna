@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "https://luna-back-y4a4.onrender.com";
 
 export const login = (credentials, token) => {
   return axios.post(`${BASE_URL}/api/auth/login`, credentials, {
