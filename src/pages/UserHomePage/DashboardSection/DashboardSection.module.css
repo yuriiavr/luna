@@ -1,0 +1,80 @@
+.userName{
+    color: #fff;
+}
+
+.profileStats{
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.saveDescBtn{
+    background-color: #1a73e8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+.dashboardButtons{
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboardButtons button {
+    background-color: transparent;
+    background-color: #1a73e8;
+    text-transform: uppercase;
+    padding: 10px 50px;
+    cursor: pointer;
+    margin: 20px auto;
+    border: 1px solid transparent;
+    color: #fff;
+}
+
+.dashboardButtons button:hover,
+.dashboardButtons button:focus {
+    background-color: transparent;
+    border: 1px solid #1a73e8;
+    color: #1a73e8;
+}
+
+/* Стилі для групи кнопок-фільтрів */
+.filterGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.filterLabel {
+  font-weight: bold;
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.filterButton {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.filterButton:hover {
+  background-color: #444;
+  border-color: #777;
+}
+
+.filterButton.active {
+  background-color: #5d5dff;
+  border-color: #5d5dff;
+  font-weight: bold;
+}

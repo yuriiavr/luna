@@ -25,6 +25,8 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "rsuite": "^5.35.1",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

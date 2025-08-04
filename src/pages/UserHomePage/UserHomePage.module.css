@@ -1,161 +1,704 @@
 .cont {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  transition: background-color 0.3s ease;
 }
 
-.playerCont {
+.cont h1, .cont h2, .cont h3 {
+  color: #fff;
+}
+
+.cont strong {
+  color: #fff;
+}
+
+.cont a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.cont a:hover {
+  text-decoration: underline;
+}
+
+.section{
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  position: relative;
+  max-width: 1200px;
+}
+
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+}
+
+.container {
+  flex-grow: 1; 
+  width: 100%;
+}
+
+/* Інші ваші стилі... */
+
+/*
+ * Навігація по вкладках
+ */
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.tabButtons{
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tabButton {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.tabButton:hover {
+  background-color: #444;
+  border-color: #777;
+}
+
+.tabButton.active {
+  background-color: #5d5dff;
+  border-color: #5d5dff;
+  font-weight: bold;
+}
+
+/*
+ * Форми та кнопки
+ */
+.loginForm, .formGroup {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: #fff;
+}
+
+input, select{
+  padding: 10px 20px;
+  font-size: 18px;
+  color: #000;
+  border: 1px solid #fff;
+  width: 400px;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"]{
+  width: 100%;
+}
+
+.loginTitle {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.loginInput, .loginSelect, .select, .profileTextarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #3e4e5e;
+  border-radius: 5px;
+  background-color: #111a21;
+  color: #fff;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.loginInput:focus, .loginSelect:focus, .select:focus, .profileTextarea:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
+}
+
+.loginBtn, .searchButton, .logoutBtn, .stopSearchBtn, .saveDescriptionBtn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.loginBtn, .searchButton {
+  background-color: #1a73e8;
+  color: #fff;
+}
+
+.loginBtn:hover, .searchButton:hover {
+  background-color: #1562bf;
+}
+
+.logoutBtn, .stopSearchBtn {
+  background-color: #e53935;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.logoutBtn:hover, .stopSearchBtn:hover {
+  background-color: #c62828;
+}
+
+.saveDescriptionBtn {
+  background-color: #388e3c;
+  color: #fff;
+}
+
+.saveDescriptionBtn:hover {
+  background-color: #2e7d32;
+}
+
+.errorMessage, .statusMessage {
+  color: #ff5252;
+  text-align: center;
+}
+
+.successMessage {
+  color: #4caf50;
+  text-align: center;
+}
+
+/*
+ * Секція "Особистий кабінет"
+ */
+.profileInfoCard {
+  background: #1c2630;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #fff;
+}
+
+.profileInfoCard div {
+  display: flex;
+  align-items: center;
+}
+
+.profileInfoCard strong {
+  margin-right: 10px;
+}
+
+.rank-display {
+  display: flex;
+  align-items: center;
+}
+
+.rank-image {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.rank-details {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.rank-tier {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.rank-lp {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.description_container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.profileTextarea {
+  height: 80px;
+  resize: vertical;
+}
+
+.dashboardSearchContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .selectCont {
   display: flex;
   flex-direction: column;
+  gap: 5px;
+}
+
+/*
+ * Секція "Пошук"
+ */
+.searchHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-.selectCont span {
-  margin-bottom: 10px;
-  font-size: 16px;
+.regionSelect {
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #111a21;
+  color: #fff;
+  border: 1px solid #3e4e5e;
 }
 
-.footer {
-  padding: 30px 0px;
-  background-color: #0e141c;
+.filtersContainer {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+  flex-wrap: wrap; 
+}
+
+.filtersContainer .formGroup {
+  padding: 0;
+  background: none;
+  flex: 1;
+  min-width: 150px;
+}
+
+.filtersContainer .formGroup select {
+  width: 100%;
+}
+
+.onlineUsersList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.userCard {
+  background-color: #1c2630;
+  border: 1px solid #3e4e5e;
+  border-radius: 8px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #fff;
+}
+
+.userCard:hover {
+  background-color: #2e3a47;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.cardRiotId {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.cardRegion {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.cardDetails {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  width: 100%;
-  height: 2.5rem;
 }
 
-.social_cont {
+.cardRank {
   display: flex;
-  flex-direction: column;
-  column-gap: 15px;
-  margin: 0 60px;
+  align-items: center;
 }
 
-.social_link {
-  text-decoration: none;
-  color: #fff;
-  font-size: 22px;
+.cardQueue {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.footerLogo {
-  color: #fff;
-  font-size: 48px;
-  font-family: "Fredoka";
-  text-decoration: none;
+.cardQueue p {
+  margin: 0;
 }
 
-.searchButton {
-  background-color: transparent;
-  border: 1px solid #ff5277;
-  color: #ff5277;
-  text-transform: uppercase;
-  padding: 10px 50px;
-  cursor: pointer;
-  margin: 20px auto;
+.laneIcon {
+  width: 24px;
+  height: 24px;
 }
 
-.searchButton:hover,
-.searchButton:focus {
-  background-color: #ff5277;
-  border: 1px solid transparent;
-  color: #fff;
+.cardDescription {
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 14px;
+  opacity: 0.9;
 }
 
-.select {
-  padding: 7px 10px;
-  font-size: 20px;
-  background-color: transparent;
-}
-
-.select option {
-  color: #111;
-}
-
-.success_message {
-  background-color: #1ec960;
-  max-width: 300px;
-  color: #fff;
-  padding: 20px 30px;
-  padding-right: 35px;
-  text-align: center;
-  border-radius: 15px;
-  position: absolute;
-  right: 30px;
-  display: none;
-  filter: drop-shadow(2px 11px 10px #000000);
-}
-
-.error_message {
-  background-color: #ff5277;
-  width: 100%;
-  color: #fff;
-  padding: 40px 0px;
-  padding-right: 0px;
-  text-align: center;
-  border-radius: 0px;
-  position: absolute;
-  right: 0px;
-  top: 0;
-  filter: drop-shadow(2px 11px 10px #000000);
+.sliderContainer {
+  padding: 20px 0;
+  margin-bottom: 20px;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+
+   user-select: none;
+  -webkit-user-drag: none; 
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
-.close_button {
+.sliderContainer::-webkit-scrollbar {
   display: none;
 }
 
-@media screen and (min-width: 1200px) {
-  .footer {
-    padding: 30px 0px;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    bottom: 0;
-  }
+.sliderContainer .userCard {
+  min-width: 200px;
+  max-width: 200px;
+  margin: 15px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  position: relative;
+  flex-shrink: 0;
+}
 
-  .error_message {
-    background-color: #ff5277;
-    max-width: 300px;
-    color: #fff;
-    padding: 20px 30px;
-    padding-right: 35px;
-    text-align: center;
-    border-radius: 15px;
-    position: absolute;
-    right: 30px;
-    top: 6rem;
-    filter: drop-shadow(2px 11px 10px #000000);
-  }
+.sliderContainer {
+  mask-image: linear-gradient(to right, 
+    transparent 0%, 
+    white 10%, 
+    white 90%, 
+    transparent 100%);
+}
 
-  .close_button {
+.sliderContainer .userCard:hover {
+  transform: scale(1.1);
+}
+
+.userCard {
+  border-radius: 15px;
+  background-color: #2c2f33;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.userCard h3{
+  font-size: 18px;
+}
+
+.userCard p{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*
+ * Секція "Новини"
+ */
+.news-item {
+  background-color: #1c2630;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #3e4e5e;
+}
+
+.news-item h3 {
+  margin-top: 0;
+  color: #fff;
+}
+
+.news-date {
+  font-size: 14px;
+  color: #a0a0a0;
+}
+
+/*
+ * Стилі для модального вікна
+ */
+.playerProfileModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: #1c2630;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  color: #fff;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.closeModal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.dashboardSection{
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.rememberMe{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.rememberMe label{
+  white-space: nowrap;
+}
+
+.button {
     background-color: transparent;
-    border: none;
-    border-left: 2px solid #fff;
-    color: #fff;
+    border: 1px solid #ff5277;
+    color: #ff5277;
+    text-transform: uppercase;
+    padding: 10px 50px;
     cursor: pointer;
-    border-radius: 50px;
-    padding: 2px 5px;
-    position: absolute;
-    right: 0px;
-    top: 0;
-    font-size: 16px;
-    height: 100%;
-    display: block;
-  }
+    margin: 20px auto;
+}
 
-  .selectCont span {
-    font-size: 22px;
-  }
+.button:hover,
+.button:focus {
+    background-color: #ff5277;
+    border: 1px solid transparent;
+    color: #fff;
+}
+
+.rankDisplay{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rankDetails{
+  color: #fff;
+}
+
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  color: #888;
+}
+
+.emptyStateIcon {
+  width: 300px;
+  height: 180px;
+  margin-bottom: 20px;
+}
+
+.emptyStateText {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.emptyStateSubText {
+  font-size: 1rem;
+}
+
+.yourSpotCard .userCard{
+  max-width: 800px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.yourSpotCard img{
+  max-width: 100px;
+}
+
+.yourSpotCard p:last-child{
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stopSearch {
+    background-color: transparent;
+    background-color: #ff5277;
+    text-transform: uppercase;
+    padding: 10px 50px;
+    cursor: pointer;
+    margin: 20px auto;
+    border: 1px solid transparent;
+    color: #fff;
+}
+
+.stopSearch:hover,
+.stopSearch:focus {
+    background-color: transparent;
+    border: 1px solid #ff5277;
+    color: #ff5277;
+}
+
+.filterGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.filterLabel {
+  font-weight: bold;
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.filterButton {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.filterButton:hover {
+  background-color: #444;
+  border-color: #777;
+}
+
+.filterButton.active {
+  background-color: #5d5dff;
+  border-color: #5d5dff;
+  font-weight: bold;
+}
+
+.filtersToggleArea {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.toggleFiltersButton {
+  position: absolute; 
+  top: 0;
+  right: 0;
+  padding: 8px 12px;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.toggleFiltersButton:hover {
+  background-color: #34495e;
+}
+
+.filtersContainer {
+  gap: 15px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+  padding: 0;
+}
+
+.filtersContainerVisible {
+  max-height: 500px; 
+  padding: 15px 0; 
+}
+
+.filterIconContainer {
+  width: 24px;
+  height: 24px;
+  color: #ecf0f1;
+}
+
+.toggleFiltersButton {
+  padding: 8px 12px;
+  background-color: #2c3e50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  color: #ecf0f1;
+}
+
+.toggleFiltersButton:hover {
+  background-color: #34495e;
+}
+.toggleFiltersButton.active {
+  color: #5d5dff;
+}
+
+.filterIcon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  transition: fill 0.2s ease;
 }

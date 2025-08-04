@@ -18,7 +18,7 @@ import AdditionalArticlePage from "./pages/AdditionalArticlePage/AdditionalArtic
 import ReactGA from "react-ga";
 import SignUp from "./pages/SignUp/SignUp";
 import LogIn from "./pages/LogIn/LogIn";
-import { UserHomePage } from "./pages/UserHomePage/UserHomePage";
+import UserHomePage from "./pages/UserHomePage/UserHomePage";
 import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import { FindTeammates } from "./pages/FindTeammates/FindTeammates";
 import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";

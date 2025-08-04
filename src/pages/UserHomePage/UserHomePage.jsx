@@ -1,305 +1,222 @@
-import { useContext, useState } from "react";
+import React, { useState, useEffect } from "react";
+import io from "socket.io-client";
+import DashboardSection from "./DashboardSection/DashboardSection";
+import Finder from "./Finder/Finder";
+import styles from "./UserHomePage.module.css";
+import { Footer } from "../../components/Footer/Footer";
 import { Header } from "../../components/Header/Header";
-import { ThemeContext } from "../../App";
-import css from "./UserHomePage.module.css";
-import { useAuth } from "../../hooks/useAuth";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { BaseUrl } from "../api/AdditionalApi";
-import { useDispatch } from "react-redux";
+import Loader from "../../components/Loader/Loader";
 
-export const UserHomePage = () => {
-  const { user } = useAuth();
-  const navigate = useNavigate();
+const BACKEND_BASE_URL = "https://lol-prog-back.onrender.com";
+let socket = null;
 
-  const { theme } = useContext(ThemeContext);
+const UserHomePage = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUserData, setCurrentUserData] = useState(null);
+  const [activeSection, setActiveSection] = useState("login");
+  const [loginErrorMessage, setLoginErrorMessage] = useState("");
+  const [riotId, setRiotId] = useState("");
+  const [lolPlatformRegion, setLolPlatformRegion] = useState("euw1");
+  const [isLoading, setIsLoading] = useState(false);
 
-  if (!theme) {
-    document.getElementsByTagName("body")[0].style.backgroundColor = "#0E141C";
-  } else {
-    document.getElementsByTagName("body")[0].style.backgroundColor = "#fff";
-  }
+  useEffect(() => {
+    const storedRiotId = localStorage.getItem("riotId");
+    const storedRegion = localStorage.getItem("lolPlatformRegion");
 
-  const [queue, setQueue] = useState();
-  const [line, setLine] = useState();
-  const [server, setServer] = useState();
-  const [rank, setRank] = useState();
-  const [ign, setIgn] = useState();
+    if (storedRiotId && storedRegion) {
+      setRiotId(storedRiotId);
+      setLolPlatformRegion(storedRegion);
 
+      handleLogin(storedRiotId, storedRegion);
+    }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+    socket = io(BACKEND_BASE_URL);
 
-    await axios
-      .post(
-        `${BaseUrl}/api/findmates/`,
-        {
-          queue,
-          line,
-          server,
-          rank,
-          ign,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      )
-      .then(() => navigate("/findteammates", { replace: true }))
-      .catch(() => showError());
+    return () => {
+      if (socket) {
+        socket.disconnect();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("connect", () => {
+        console.log("Connected to WebSocket server");
+      });
+
+      socket.on("queue_updated", () => {
+        console.log("Queue updated from socket");
+      });
+
+      socket.on("disconnect", () => {
+        console.log("Disconnected from WebSocket server");
+      });
+
+      socket.on("connect_error", (error) => {
+        console.error("Socket connection error:", error);
+      });
+    }
+  }, [isLoggedIn, activeSection]);
+
+  const handleLogin = async (id = riotId, region = lolPlatformRegion) => {
+    setLoginErrorMessage("");
+    setIsLoading(true);
+    if (!id) {
+      setLoginErrorMessage("Будь ласка, введіть ваш Riot ID.");
+      setIsLoggedIn(false);
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(`${BACKEND_BASE_URL}/api/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          riotId: id,
+          lolPlatformRegion: region,
+          rememberMe: true, // Завжди передаємо 'true' на бекенд
+        }),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        setCurrentUserData(data);
+        setIsLoggedIn(true);
+        setActiveSection("dashboard");
+        // Завжди зберігаємо дані в localStorage
+        localStorage.setItem("riotId", id);
+        localStorage.setItem("lolPlatformRegion", region);
+      } else {
+        setLoginErrorMessage(data.error || "Невідома помилка логіну.");
+        setIsLoggedIn(false);
+      }
+    } catch (err) {
+      console.error(err);
+      setLoginErrorMessage(
+        "Помилка мережі при логіні. Перевірте підключення або спробуйте пізніше."
+      );
+      setIsLoggedIn(false);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const successWindow = document.getElementById("success-window");
-  const closeSuccess = () => {
-    successWindow.style.display = "none";
+  const handleLogout = () => {
+    localStorage.removeItem("riotId");
+    localStorage.removeItem("lolPlatformRegion");
+    localStorage.removeItem("profileDescription");
+    setCurrentUserData(null);
+    setIsLoggedIn(false);
+    setRiotId("");
+    setLolPlatformRegion("euw1");
+    setActiveSection("login");
   };
 
-  const errorWindow = document.getElementById("error-window");
-  const closeError = () => {
-    errorWindow.style.display = "none";
-  };
-  const showError = () => {
-    errorWindow.style.display = "flex";
+  const renderContent = () => {
+    if (isLoading) {
+       return <Loader />;
+    }
+
+    if (!isLoggedIn) {
+      return (
+        <div id="loginSection" className={styles.section}>
+          <div className={styles.formGroup}>
+            <label htmlFor="riotId">Ваш Riot ID:</label>
+            <input
+              type="text"
+              id="riotId"
+              value={riotId}
+              onChange={(e) => setRiotId(e.target.value)}
+              placeholder="наприклад, Summoner#EUW1"
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <div className={styles.tabButtons}>
+              <button
+                className={`${styles.tabButton} ${
+                  lolPlatformRegion === "euw1" ? styles.active : ""
+                }`}
+                onClick={() => setLolPlatformRegion("euw1")}
+              >
+                EU West
+              </button>
+              <button
+                className={`${styles.tabButton} ${
+                  lolPlatformRegion === "eun1" ? styles.active : ""
+                }`}
+                onClick={() => setLolPlatformRegion("eun1")}
+              >
+                EU Nordic & East
+              </button>
+            </div>
+          </div>
+          {/* Кнопку "Запам'ятати мене" видалено */}
+          <button className={styles.button} onClick={() => handleLogin()}>
+            Увійти
+          </button>
+          {loginErrorMessage && (
+            <p className={styles.errorMessage}>{loginErrorMessage}</p>
+          )}
+        </div>
+      );
+    }
+
+    if (activeSection === "dashboard") {
+      return (
+        <DashboardSection
+          currentUserData={currentUserData}
+          onLogout={handleLogout}
+          onStartSearch={() => setActiveSection("search")}
+          backendUrl={BACKEND_BASE_URL}
+        />
+      );
+    }
+
+    if (activeSection === "search") {
+      return (
+        <Finder
+          currentUserData={currentUserData}
+          backendUrl={BACKEND_BASE_URL}
+          socket={socket}
+        />
+      );
+    }
+
+    return null;
   };
 
   return (
-    <>
+    <div className={styles.mainWrapper}>
       <Header />
-
-      <div
-        id="success-window"
-        style={{ display: "none" }}
-        className={css.success_message}
-      >
-        <button onClick={closeSuccess} className={css.close_button}>
-          &#x279C;
-        </button>
-        <span>Оголошення успішно опубліковано</span>
+      <div className={styles.container}>
+        {isLoggedIn && (
+          <div className={styles.tabButtons}>
+            <button
+              className={`${styles.tabButton} ${
+                activeSection === "dashboard" ? styles.active : ""
+              }`}
+              onClick={() => setActiveSection("dashboard")}
+            >
+              Особистий кабінет
+            </button>
+            <button
+              className={`${styles.tabButton} ${
+                activeSection === "search" ? styles.active : ""
+              }`}
+              onClick={() => setActiveSection("search")}
+            >
+              Пошук
+            </button>
+          </div>
+        )}
+        {renderContent()}
       </div>
-
-      <div
-        id="error-window"
-        style={{ display: "none" }}
-        className={css.error_message}
-      >
-        <button onClick={closeError} className={css.close_button}>
-          &#x279C;
-        </button>
-        <span onClick={closeError}>
-          Нажаль ви не можете залишати більше одного оголошення
-        </span>
-      </div>
-
-      <div
-        className={css.cont}
-        style={{ background: theme ? "#fff" : "#0E141C" }}
-      >
-        <div style={{ display: "flex" }}>
-          <h1
-            style={{
-              padding: "0",
-              margin: "0",
-              marginBottom: "30px",
-              color: theme ? "#111" : "#fff",
-            }}
-          >
-            Вітаємо, {user.userName}
-          </h1>
-        </div>
-        <form onSubmit={handleSubmit} className={css.playerCont}>
-          <label className={css.selectCont}>
-            <span style={{ color: theme ? "#111" : "#fff" }}>
-              Оберіть чергу
-            </span>
-            <select
-              style={{
-                color: theme ? "#111" : "#fff",
-                border: theme ? "1px solid #000" : "1px solid #fff",
-              }}
-              className={css.select}
-              name="queue"
-              onChange={(e) => setQueue(e.target.value)}
-              required
-              defaultValue=""
-            >
-              <option disabled value="">
-                Черга
-              </option>
-              <option value="Ranked Solo/Duo">Ranked Solo/Duo</option>
-              <option value="Ranked Flex">Ranked Flex</option>
-              <option value="Normal">Normal</option>
-              <option value="ARAM">ARAM</option>
-              <option value="Тимчасовий режим">Тимчасовий режим</option>
-            </select>
-          </label>
-
-          <label className={css.selectCont}>
-            <span style={{ color: theme ? "#111" : "#fff" }}>
-              Оберіть вашу лінію
-            </span>
-            <select
-              style={{
-                color: theme ? "#111" : "#fff",
-                border: theme ? "1px solid #000" : "1px solid #fff",
-              }}
-              className={css.select}
-              name="line"
-              onChange={(e) => setLine(e.target.value)}
-              required
-              defaultValue=""
-            >
-              <option disabled value="">
-                Лінія
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141110/lanes/top.png">
-                Топ
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141109/lanes/jungle.png">
-                Ліс
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141109/lanes/middle.png">
-                Мід
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141109/lanes/adc.png">
-                Адк
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141109/lanes/support.png">
-                Сапорт
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713204377/lanes/allrole.png">
-                Будь-яка лінія
-              </option>
-            </select>
-          </label>
-
-          <label className={css.selectCont}>
-            <span style={{ color: theme ? "#111" : "#fff" }}>
-              Оберіть ваш сервер
-            </span>
-            <select
-              style={{
-                color: theme ? "#111" : "#fff",
-                border: theme ? "1px solid #000" : "1px solid #fff",
-              }}
-              className={css.select}
-              name="server"
-              onChange={(e) => setServer(e.target.value)}
-              required
-              defaultValue=""
-            >
-              <option disabled value="">
-                Сервер
-              </option>
-              <option value="EUW">EUW</option>
-              <option value="EUNE">EUNE</option>
-            </select>
-          </label>
-
-          <label className={css.selectCont}>
-            <span style={{ color: theme ? "#111" : "#fff" }}>
-              Оберіть ваш ранг
-            </span>
-            <select
-              style={{
-                color: theme ? "#111" : "#fff",
-                border: theme ? "1px solid #000" : "1px solid #fff",
-              }}
-              className={css.select}
-              name="rank"
-              onChange={(e) => setRank(e.target.value)}
-              required
-              defaultValue=""
-            >
-              <option disabled value="">
-                Ранг
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141578/ranks/iron.webp">
-                Залізо
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141578/ranks/bronze.webp">
-                Бронза
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141578/ranks/silver.webp">
-                Срібло
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141579/ranks/gold.webp">
-                Золото
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141579/ranks/platinum.webp">
-                Платина
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141753/ranks/emerald.webp">
-                Смарагд
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141579/ranks/diamond.webp">
-                Діамант
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141580/ranks/master.webp">
-                Майстер
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141577/ranks/grandmaster.webp">
-                Грандмайстер
-              </option>
-              <option value="https://res.cloudinary.com/dfasgvfex/image/upload/v1713141577/ranks/challenger.webp">
-                Челленджер
-              </option>
-            </select>
-          </label>
-
-          <label className={css.selectCont}>
-            <span style={{ color: theme ? "#111" : "#fff" }}>
-              Введіть ваш ігровий нікнейм разом з Riot ID
-            </span>
-            <input
-              style={{
-                color: theme ? "#111" : "#fff",
-                border: theme ? "1px solid #000" : "1px solid #fff",
-              }}
-              className={css.select}
-              type="text"
-              name="ign"
-              placeholder="Faker#UKR"
-              onChange={(e) => setIgn(e.target.value)}
-              required
-            />
-          </label>
-
-          <button className={css.searchButton} type="submit">
-            Розпочати пошук
-          </button>
-        </form>
-        <div>
-          <Link
-            style={{
-              color: theme ? "#111" : "#fff",
-              textDecoration: "underline",
-            }}
-            to={"/findteammates"}
-          >
-            Переглянути список шукачів
-          </Link>
-        </div>
-      </div>
-
-      <footer className={css.footer}>
-        <div className={css.social_cont}>
-          <a href="https://t.me/ukrainian_lol">
-            <span className={css.social_link}>
-              <img
-                width={20}
-                src={require("../../images/tg.png")}
-                alt="telegram"
-              />{" "}
-              t.me/ukrainian_lol
-            </span>
-          </a>
-          <a className={css.social_link} href="mailto:ukarainian.lol@ukr.net">
-            <img width={20} src={require("../../images/mail.png")} alt="mail" />{" "}
-            ukarainian.lol@ukr.net
-          </a>
-        </div>
-      </footer>
-    </>
+      <Footer />
+    </div>
   );
 };
+
+export default UserHomePage;
